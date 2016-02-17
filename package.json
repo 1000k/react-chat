@@ -1,0 +1,32 @@
+{
+  "name": "react-chat",
+  "version": "1.0.0",
+  "description": "Sample React application",
+  "main": "gulpfile.coffee",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1000k/react-chat.git"
+  },
+  "keywords": [
+    "React",
+    "chat"
+  ],
+  "author": "SENDA Keijiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/1000k/react-chat/issues"
+  },
+  "homepage": "https://github.com/1000k/react-chat#readme",
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "coffee-script": "^1.10.0",
+    "gulp": "^3.9.1",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0"
+  }
+}
