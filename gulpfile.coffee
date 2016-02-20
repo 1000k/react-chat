@@ -2,7 +2,9 @@ gulp = require 'gulp'
 plumber = require 'gulp-plumber'
 browserify = require 'browserify'
 source = require "vinyl-source-stream"
+buffer = require "vinyl-buffer"
 babelify = require 'babelify'
+uglify = require 'gulp-uglify'
 sass = require 'gulp-sass'
 bourbon = require 'node-bourbon'
 
@@ -16,6 +18,8 @@ gulp.task 'browserify', ->
     console.log(err.toString())
     this.emit 'end'
   .pipe source 'app.js'
+  .pipe buffer()
+  .pipe uglify()
   .pipe gulp.dest 'dist/'
 
 gulp.task 'sass', ->
