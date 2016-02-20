@@ -1,17 +1,17 @@
 gulp = require 'gulp'
 plumber = require 'gulp-plumber'
+sourcemaps = require 'gulp-sourcemaps'
 browserify = require 'browserify'
 source = require "vinyl-source-stream"
 buffer = require "vinyl-buffer"
 babelify = require 'babelify'
 uglify = require 'gulp-uglify'
-sass = require 'gulp-sass'
-bourbon = require 'node-bourbon'
 
 gulp.task 'browserify', ->
   browserify
     entries: ['src/app.js']
     transform: [babelify]
+    debug: true
   .bundle()
   # Prevent crashing gulp
   .on 'error', (err) ->
@@ -19,7 +19,9 @@ gulp.task 'browserify', ->
     this.emit 'end'
   .pipe source 'app.js'
   .pipe buffer()
+  .pipe sourcemaps.init {loadMaps: true}
   .pipe uglify()
+  .pipe sourcemaps.write()
   .pipe gulp.dest 'dist/'
 
 gulp.task 'sass', ->
@@ -35,6 +37,7 @@ gulp.task 'sass', ->
     )
     .pipe gulp.dest 'dist/css/'
 
+gulp.task 'default', ['browserify']
 
 gulp.task 'watch', ->
   gulp.watch 'src/*.js*', ['browserify']
