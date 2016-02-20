@@ -4,6 +4,7 @@
   "description": "Sample React application",
   "main": "gulpfile.coffee",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -38,5 +39,9 @@
     "react-dom": "^0.14.7",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
   }
 }
