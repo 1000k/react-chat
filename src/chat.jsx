@@ -25,8 +25,10 @@ var ChatContent = React.createClass({
   render: function() {
     var comments = this.props.data.map(function(comment) {
       return (
-        <p key={comment.id}>
-          {comment.name}: {comment.message} - <time>{comment.posted_at}</time>
+        <p className="comment" key={comment.id}>
+          <span className="name">{comment.name}</span>
+          <span className="message">{comment.message}</span>
+          <time>{comment.posted_at}</time>
         </p>
       );
     });
@@ -58,14 +60,14 @@ var InputForm = React.createClass({
   },
   render: function() {
     return (
-      <form className="inputForm" onSubmit={this.handleSubmit}>
-        <input type="text" placeholder="Your name"
+      <form className="input-form" onSubmit={this.handleSubmit}>
+        <input type="text" className="input-name" placeholder="Name"
                value={this.state.name}
                onChange={this.handleChangeName} />
-        <input type="text" placeholder="Message"
+        <input type="text" className="input-message" placeholder="Message"
                value={this.state.message}
                onChange={this.handleChangeMessage} />
-        <input type="submit" value="Post" />
+        <input className="button-post" type="submit" value="Post" />
       </form>
     );
   }

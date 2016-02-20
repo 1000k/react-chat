@@ -1,8 +1,10 @@
 gulp = require 'gulp'
+plumber = require 'gulp-plumber'
 browserify = require 'browserify'
 source = require "vinyl-source-stream"
 reactify = require 'reactify'
-compass = require 'gulp-compass'
+sass = require 'gulp-sass'
+bourbon = require 'node-bourbon'
 
 gulp.task 'browserify', ->
   b = browserify
@@ -12,18 +14,20 @@ gulp.task 'browserify', ->
     .pipe source 'app.js'
     .pipe gulp.dest 'dist'
 
-# Please make sure to add css and sass options with the same value
-# in config.rb since compass can't output css result directly.
-gulp.task 'compass', ->
+gulp.task 'sass', ->
   gulp.src 'src/sass/*.sass'
-    # another options: https://www.npmjs.com/package/gulp-compass
-    .pipe compass(
-      config_file: 'config.rb'
-      css: 'dist/css/'
-      sass: 'src/sass/'
+    # Prevent becoming zombie process when build failed
+    .pipe plumber(
+      errorHandler: (err) ->
+        console.log(err.messageFormatted)
+        this.emit 'end'
+    )
+    .pipe sass(
+      includePaths: require('node-bourbon').with('dist/css/')
     )
     .pipe gulp.dest 'dist/css/'
 
+
 gulp.task 'watch', ->
   gulp.watch 'src/*.js', ['browserify']
-  gulp.watch 'src/sass/*.sass', ['compass']
+  gulp.watch 'src/sass/*.sass', ['sass']
