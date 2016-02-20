@@ -6,6 +6,9 @@ source = require "vinyl-source-stream"
 buffer = require "vinyl-buffer"
 babelify = require 'babelify'
 uglify = require 'gulp-uglify'
+sass = require 'gulp-sass'
+bourbon = require 'node-bourbon'
+webserver = require 'gulp-webserver'
 
 gulp.task 'browserify', ->
   browserify
@@ -27,15 +30,22 @@ gulp.task 'browserify', ->
 gulp.task 'sass', ->
   gulp.src 'src/sass/*.sass'
     # Prevent becoming zombie process when build failed
-    .pipe plumber(
+    .pipe plumber
       errorHandler: (err) ->
         console.log(err.messageFormatted)
         this.emit 'end'
-    )
     .pipe sass(
       includePaths: require('node-bourbon').with('dist/css/')
     )
     .pipe gulp.dest 'dist/css/'
+
+gulp.task 'webserver', ->
+  gulp.src '.'
+    .pipe webserver
+      fallback: 'index.html'
+      port: 3000
+      livereload: true
+      open: true
 
 gulp.task 'default', ['browserify']
 
