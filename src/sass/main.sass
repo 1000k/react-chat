@@ -1,0 +1,43 @@
+@import "bourbon";
+@import "base/grid-settings";
+@import "neat/neat";
+@import "base/base";
+
+body
+  @include outer-container
+
+#content
+  @include span-columns(6)
+  @include shift(3)
+
+.input-form
+  @include outer-container
+  .input-name
+    @include span-columns(2)
+  .input-message
+    @include span-columns(8)
+  .button-post
+    @include span-columns(2)
+
+.comment
+  text-align: justify
+  .name
+    display: inline-block
+    color: $blue
+    &::after
+      content: ': '
+  .message
+    display: inline-block
+    padding-left: 0.5rem
+  time
+    display: inline-block
+    padding-left: 1rem
+    color: $light-gray
+    &::before
+      content: ' - '
+    &:hover
+      color: $dark-gray
+
+h1
+  font-size: golden-ratio(14px, 1)
+  text-align: center
