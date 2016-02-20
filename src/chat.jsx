@@ -20,6 +20,7 @@ var Chat = React.createClass({
     );
   }
 })
+
 var ChatContent = React.createClass({
   render: function() {
     var comments = this.props.data.map(function(comment) {
@@ -36,6 +37,7 @@ var ChatContent = React.createClass({
     );
   }
 });
+
 var InputForm = React.createClass({
   getInitialState: function() {
     return {name: '', message: ''};
