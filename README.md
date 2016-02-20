@@ -18,10 +18,10 @@ Now access to http://localhost:3000
 Development
 ----
 ```bash
-### Build
+# Build
 gulp
 
-### Watch modified file and build automatically
+# Watch modified file and build automatically
 gulp watch
 ```
 
@@ -29,7 +29,7 @@ gulp watch
 
 Based on [Bourbon](http://bourbon.io/), [Neat](http://neat.bourbon.io/), and [Bitters](http://bitters.bourbon.io/).
 
-After modified `src/ass/main.sass`, then run:
+After modified `src/sass/main.sass`, then run:
 
 ```bash
 gulp sass
@@ -41,5 +41,5 @@ Or watch file changes with `gulp watch`.
 Backlog
 ----
 - [x] Implement styles
-- [ ] Add animation
+- [x] Add animation
 - [ ] Add tests
